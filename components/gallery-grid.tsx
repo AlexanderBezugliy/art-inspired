@@ -36,7 +36,7 @@ export const GalleryGrid = () => {
               <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/40">
                 Collection Volume
               </span>
-              <span className="text-4xl font-serif italic text-foreground">
+              <span className="text-5xl font-serif italic text-foreground">
                 2.4k+ <span className="text-sm not-italic font-sans font-bold text-primary/50 ml-1">Images</span>
               </span>
             </div>

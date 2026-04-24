@@ -39,12 +39,14 @@ function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
 
 type PaginationLinkProps = {
   isActive?: boolean
+  pageNumber?: number
 } & Pick<React.ComponentProps<typeof Button>, 'size'> &
   React.ComponentProps<'a'>
 
 function PaginationLink({
   className,
   isActive,
+  pageNumber,
   size = 'icon',
   ...props
 }: PaginationLinkProps) {
@@ -58,6 +60,7 @@ function PaginationLink({
           variant: isActive ? 'outline' : 'ghost',
           size,
         }),
+        pageNumber && pageNumber !== 1 && !isActive ? 'text-white' : '',
         className,
       )}
       {...props}
@@ -107,7 +110,7 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn('flex size-9 items-center justify-center', className)}
+      className={cn('flex size-9 items-center justify-center text-white', className)}
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />

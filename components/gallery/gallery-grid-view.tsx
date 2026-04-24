@@ -48,6 +48,7 @@ export const GalleryGridView = memo(({
           <PaginationItem key={i}>
             <PaginationLink
               href="#"
+              pageNumber={i}
               isActive={currentPage === i}
               className={cn(
                 "transition-all duration-300",
@@ -68,10 +69,11 @@ export const GalleryGridView = memo(({
         <PaginationItem key={1}>
           <PaginationLink
             href="#"
+            pageNumber={1}
             isActive={currentPage === 1}
             className={cn(
               "transition-all duration-300",
-              currentPage === 1 ? "bg-primary text-primary-foreground font-serif" : "hover:bg-muted"
+              currentPage === 1 ? "bg-primary text-white font-serif" : "hover:bg-muted"
             )}
             onClick={(e) => {
               e.preventDefault();
@@ -95,10 +97,11 @@ export const GalleryGridView = memo(({
           <PaginationItem key={i}>
             <PaginationLink
               href="#"
+              pageNumber={i}
               isActive={currentPage === i}
               className={cn(
                 "transition-all duration-300",
-                currentPage === i ? "bg-primary text-primary-foreground font-serif" : "hover:bg-muted"
+                currentPage === i ? "bg-primary text-white font-serif" : "hover:bg-muted"
               )}
               onClick={(e) => {
                 e.preventDefault();
@@ -119,6 +122,7 @@ export const GalleryGridView = memo(({
         <PaginationItem key={totalPages}>
           <PaginationLink
             href="#"
+            pageNumber={totalPages}
             isActive={currentPage === totalPages}
             className={cn(
               "transition-all duration-300",

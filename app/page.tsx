@@ -19,7 +19,7 @@ export default function Page() {
         <GalleryGrid />
 
         {/* Search has changed Section */}
-        <SearchSection />
+        {/* <SearchSection /> */}
 
         {/* Mission Section */}
         <MissionSection />
