@@ -6,7 +6,12 @@ import { useGallery } from "@/hooks/use-gallery";
 
 const PER_PAGE = 8;
 
-export const GalleryContainer = () => {
+interface GalleryContainerProps {
+  searchQuery?: string;
+  category?: string;
+}
+
+export const GalleryContainer = ({ searchQuery = '', category = 'all' }: GalleryContainerProps) => {
   const {
     images,
     loading,
@@ -14,7 +19,7 @@ export const GalleryContainer = () => {
     currentPage,
     totalPages,
     handlePageChange,
-  } = useGallery({ perPage: PER_PAGE });
+  } = useGallery({ perPage: PER_PAGE, category, searchQuery });
 
   return (
     <GalleryGridView

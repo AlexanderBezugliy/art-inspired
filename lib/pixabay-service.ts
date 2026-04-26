@@ -34,7 +34,14 @@ export interface PixabayResponse {
 const API_BASE = process.env.API_BASE || 'https://pixabay.com/api/';
 const API_KEY = process.env.API_KEY;
 
-export async function getImages(page: number = 1, perPage: number = 10): Promise<{ hits: PixabayImage[]; totalHits: number }> {
+export interface GetImagesParams {
+  page?: number;
+  perPage?: number;
+  category?: string;
+  searchQuery?: string;
+}
+
+export async function getImages({ page = 1, perPage = 10, category = 'all', searchQuery = '' }: GetImagesParams = {}): Promise<{ hits: PixabayImage[]; totalHits: number }> {
   if (!API_KEY) {
     console.error('API_KEY is missing');
     throw new Error('API_KEY не настроен. Пожалуйста, проверьте файл .env');
@@ -45,14 +52,23 @@ export async function getImages(page: number = 1, perPage: number = 10): Promise
     throw new Error('API_BASE не настроен. Пожалуйста, проверьте файл .env');
   }
 
-  // Оптимизация запроса: запрашиваем только необходимые поля, если API это поддерживает
-  // Pixabay не поддерживает выбор полей, но мы ограничиваем количество
   const url = new URL(API_BASE);
   url.searchParams.append('key', API_KEY);
   url.searchParams.append('page', page.toString());
   url.searchParams.append('per_page', perPage.toString());
   url.searchParams.append('safesearch', 'true');
-  url.searchParams.append('editors_choice', 'true'); // Для более качественных фото
+
+  const categoryIsAll = category === 'all';
+  const hasSearchQuery = searchQuery.trim().length > 0;
+
+  if (categoryIsAll && !hasSearchQuery) {
+  } else if (categoryIsAll && hasSearchQuery) {
+    url.searchParams.append('q', encodeURIComponent(searchQuery.trim()));
+  } else if (!categoryIsAll && !hasSearchQuery) {
+    url.searchParams.append('q', encodeURIComponent(category));
+  } else {
+    url.searchParams.append('q', encodeURIComponent(`${searchQuery.trim()} ${category}`));
+  }
 
   try {
     const response = await fetch(url.toString(), {
