@@ -55,7 +55,7 @@ export const MissionSection = () => {
     <section ref={containerRef} className="pt-0 pb-32 md:pb-44 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
         {/* Large Looping Video */}
-        <div className="w-full max-w-[800px] aspect-square mb-20 overflow-hidden rounded-full">
+        <div className="w-full max-w-[800px] aspect-square mb-20 overflow-hidden">
           {isMounted && (
             <video
               autoPlay

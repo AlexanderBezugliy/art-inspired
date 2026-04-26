@@ -44,7 +44,7 @@ export const Navbar = () => {
             <div className="relative flex items-center justify-center w-8 h-8 border-2 border-foreground/40 rounded-full transition-all duration-300 group-hover:border-accent">
               <div className="w-3.5 h-3.5 border border-foreground/40 rounded-full transition-all duration-300 group-hover:bg-accent/20 group-hover:border-accent" />
             </div>
-            <span className="text-xl font-bold tracking-tight">Mindloop</span>
+            <span className="text-xl font-bold tracking-tight">PICTURE.</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">

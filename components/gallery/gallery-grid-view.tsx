@@ -216,7 +216,7 @@ export const GalleryGridView = memo(({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col items-center gap-10 py-16 border-t border-border/10 mt-12"
+          className="flex flex-col items-center gap-10 py-0 border-t border-border/10"
         >
           <div className="flex flex-col items-center gap-3">
             <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/40">
