@@ -19,6 +19,7 @@ export const GalleryCard = memo(({
   priority = false 
 }: GalleryCardProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const primaryTag = image.tags.split(",")[0].trim();
 
   useEffect(() => {
@@ -61,24 +62,36 @@ export const GalleryCard = memo(({
         whileHover={{ y: -12 }}
         onClick={() => setLightboxOpen(true)}
         className={cn(
-          "group relative flex flex-col overflow-hidden rounded-[2rem] border border-border/50 cursor-pointer",
+          "group relative flex flex-col overflow-hidden rounded-[1rem] border border-border/50 cursor-pointer",
           "bg-card/30 backdrop-blur-xl transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
           "hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3)] hover:border-primary/40"
         )}
       >
         <div className="relative aspect-[4/5] w-full overflow-hidden">
+          <div className={cn(
+            "absolute inset-0 bg-muted/50 transition-opacity duration-500",
+            imageLoaded ? "opacity-0" : "opacity-100"
+          )}>
+            <div className="absolute inset-0 animate-pulse bg-gradient-to-br from-muted/80 to-muted/40" />
+          </div>
           <Image
             src={image.webformatURL}
             alt={image.tags || "Gallery image"}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:rotate-1"
+            className={cn(
+              "object-cover transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
+              "group-hover:scale-110 group-hover:rotate-1",
+              imageLoaded ? "opacity-100" : "opacity-0"
+            )}
+            onLoad={() => setImageLoaded(true)}
             priority={priority}
             loading={priority ? undefined : "lazy"}
+            decoding="async"
           />
         </div>
 
-        <figcaption className="flex flex-col gap-6 p-8">
+        <figcaption className="flex flex-col gap-0 p-4">
           <div className="flex flex-col gap-3">
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-1">
@@ -89,7 +102,7 @@ export const GalleryCard = memo(({
                   {primaryTag}
                 </h3>
               </div>
-              <div className="size-12 rounded-2xl border border-border/10 p-0.5 bg-background/50 flex items-center justify-center overflow-hidden rotate-3 group-hover:rotate-0 transition-transform duration-500 shadow-sm">
+              <div className="size-14 bg-background/50 flex items-center justify-center overflow-hidden rotate-3 group-hover:rotate-0 transition-transform duration-500 shadow-sm">
                 {image.userImageURL ? (
                   <Image 
                     src={image.userImageURL} 

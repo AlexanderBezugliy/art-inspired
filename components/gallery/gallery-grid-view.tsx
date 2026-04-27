@@ -4,7 +4,6 @@ import React, { memo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PixabayImage } from "@/lib/pixabay-service";
 import { GalleryCard } from "./gallery-card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -167,7 +166,7 @@ export const GalleryGridView = memo(({
         <AnimatePresence mode="popLayout">
           {loading ? (
             Array.from({ length: perPage }).map((_, i) => (
-              <motion.div 
+              <motion.div
                 key={`skeleton-${i}`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -175,24 +174,26 @@ export const GalleryGridView = memo(({
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="flex flex-col overflow-hidden rounded-[2rem] border border-border/20 bg-card/5 backdrop-blur-sm"
               >
-                <Skeleton className="aspect-[4/5] w-full" />
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-muted/60 via-muted/40 to-muted/20 animate-pulse" />
+                </div>
                 <div className="flex flex-col gap-6 p-8">
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <div className="space-y-2 flex-1">
-                        <Skeleton className="h-3 w-20 rounded-full" />
-                        <Skeleton className="h-8 w-3/4 rounded-xl" />
+                        <div className="h-3 w-20 rounded-full bg-gradient-to-r from-muted/80 to-muted/40 animate-pulse" />
+                        <div className="h-8 w-3/4 rounded-xl bg-gradient-to-r from-muted/60 via-muted/50 to-muted/40 animate-pulse" />
                       </div>
-                      <Skeleton className="size-12 rounded-2xl" />
+                      <div className="size-12 rounded-2xl bg-gradient-to-br from-muted/60 to-muted/30 animate-pulse" />
                     </div>
-                    <Skeleton className="h-4 w-1/2 rounded-full" />
+                    <div className="h-4 w-1/2 rounded-full bg-gradient-to-r from-muted/50 to-muted/30 animate-pulse" />
                   </div>
                   <div className="pt-4 flex items-center justify-between">
                     <div className="flex gap-2">
-                      <Skeleton className="h-5 w-16 rounded-full" />
-                      <Skeleton className="h-5 w-16 rounded-full" />
+                      <div className="h-5 w-16 rounded-full bg-gradient-to-r from-muted/50 to-muted/30 animate-pulse" />
+                      <div className="h-5 w-16 rounded-full bg-gradient-to-r from-muted/50 to-muted/30 animate-pulse" />
                     </div>
-                    <Skeleton className="h-4 w-12 rounded-full" />
+                    <div className="h-4 w-12 rounded-full bg-gradient-to-r from-muted/50 to-muted/30 animate-pulse" />
                   </div>
                 </div>
               </motion.div>

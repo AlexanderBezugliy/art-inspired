@@ -82,7 +82,7 @@ export const CTASection = () => {
           Join thousands of thinkers and creators who are already part of the Mindloop community.
         </motion.p>
 
-        <motion.div 
+        {/* <motion.div 
           {...fadeUp(0.4)}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
@@ -100,7 +100,12 @@ export const CTASection = () => {
           >
             Start Writing
           </motion.button>
-        </motion.div>
+        </motion.div> */}
+        
+        <div>
+          <video src=""></video>
+        </div>
+        
       </div>
     </section>
   );
