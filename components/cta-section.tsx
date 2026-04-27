@@ -102,10 +102,6 @@ export const CTASection = () => {
           </motion.button>
         </motion.div> */}
         
-        <div>
-          <video src=""></video>
-        </div>
-        
       </div>
     </section>
   );

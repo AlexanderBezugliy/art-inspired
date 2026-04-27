@@ -55,6 +55,6 @@ export const useGallery = ({ perPage, initialPage = 1, category = 'all', searchQ
     currentPage,
     totalPages,
     handlePageChange,
-    refresh: () => fetchImages(currentPage)
+    refresh: () => fetchImages(currentPage, category, searchQuery)
   };
 };

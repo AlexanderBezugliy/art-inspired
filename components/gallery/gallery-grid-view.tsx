@@ -24,6 +24,7 @@ interface GalleryGridViewProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  onRetry?: () => void;
   perPage: number;
 }
 
@@ -34,6 +35,7 @@ export const GalleryGridView = memo(({
   currentPage,
   totalPages,
   onPageChange,
+  onRetry,
   perPage
 }: GalleryGridViewProps) => {
 
@@ -150,9 +152,26 @@ export const GalleryGridView = memo(({
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Alert variant="destructive" className="bg-destructive/5 border-destructive/10 backdrop-blur-xl rounded-2xl p-8">
-            <AlertCircle className="h-6 w-6 text-destructive" />
-            <AlertTitle className="text-2xl font-serif font-semibold tracking-tight mb-2">System Error</AlertTitle>
-            <AlertDescription className="text-base opacity-80 font-medium">{error}</AlertDescription>
+            <div className="flex flex-col gap-6">
+              <div className="flex items-start gap-4">
+                <AlertCircle className="h-6 w-6 text-destructive mt-1" />
+                <div className="flex-1">
+                  <AlertTitle className="text-2xl font-serif font-semibold tracking-tight mb-2">System Error</AlertTitle>
+                  <AlertDescription className="text-base opacity-80 font-medium">{error}</AlertDescription>
+                </div>
+              </div>
+              
+              {onRetry && (
+                <div className="flex justify-end">
+                  <button
+                    onClick={onRetry}
+                    className="px-6 py-2 bg-destructive text-destructive-foreground rounded-full text-sm font-mono uppercase tracking-wider hover:bg-destructive/90 transition-colors"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              )}
+            </div>
           </Alert>
         </motion.div>
       </section>

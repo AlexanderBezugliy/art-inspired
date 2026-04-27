@@ -19,6 +19,7 @@ export const GalleryContainer = ({ searchQuery = '', category = 'all' }: Gallery
     currentPage,
     totalPages,
     handlePageChange,
+    refresh,
   } = useGallery({ perPage: PER_PAGE, category, searchQuery });
 
   return (
@@ -29,6 +30,7 @@ export const GalleryContainer = ({ searchQuery = '', category = 'all' }: Gallery
       currentPage={currentPage}
       totalPages={totalPages}
       onPageChange={handlePageChange}
+      onRetry={refresh}
       perPage={PER_PAGE}
     />
   );
